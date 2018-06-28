@@ -1,41 +1,36 @@
 <template>
   <div class="counter-warp">
-    <p>Vuex counter：{{ count }}</p>
+    <p>Vuex counter：\{{ count }}</p>
     <p>
       <button @click="increment">+</button>
       <button @click="decrement">-</button>
     </p>
 
-    <a href="/pages/index/index" class="home">去往首页</a>
+    <a href="/pages/index/main" class="home">去往首页</a>
   </div>
 </template>
 
 <script>
 // Use Vuex
-import { mapState, mapActions } from 'vuex'
+import store from './store'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+
 export default {
   computed: {
-    ...mapState({
-      count: state => state.counter.count
-    })
-  },
-  mounted () {
-    this.getProvince({
-      testParams: '1'
-    }).then(res => {
-      console.log(res)
-    })
+    count{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
+      return store.state.count{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
   },
   methods: {
-    ...mapActions('counter', [
-      'increment',
-      'decrement',
-      'getProvince'
-    ])
-  }
-}
-
+    increment{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
+      store.commit('increment'){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    },
+    decrement{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
+      store.commit('decrement'){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+}{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 </script>
+
 <style>
 .counter-warp {
   text-align: center;
@@ -48,5 +43,4 @@ export default {
   color: blue;
   border: 1px solid blue;
 }
-
 </style>

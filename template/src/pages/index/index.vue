@@ -13,55 +13,59 @@
         <card :text="motto"></card>
       </div>
     </div>
+
     <form class="form-container">
       <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
       <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
     </form>
-    <a href="/pages/counter/index" class="counter">去往Vuex示例页面</a>
+    {{#if vuex}}
+    <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a>
+    {{/if}}
   </div>
 </template>
 
 <script>
-import card from '@/components/card'
+import card from '@/components/card'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+
 export default {
-  data () {
+  data{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
     return {
       motto: 'Hello World',
-      userInfo: {}
-    }
+      userInfo: {}{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+    }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
   },
 
   components: {
-    card
+    card{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
   },
 
   methods: {
-    bindViewTap () {
-      const url = '../logs/index'
-      wx.navigateTo({ url })
+    bindViewTap{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
+      const url = '../logs/main'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+      wx.navigateTo({ url }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
     },
-    getUserInfo () {
+    getUserInfo{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
       // 调用登录接口
       wx.login({
         success: () => {
           wx.getUserInfo({
             success: (res) => {
-              this.userInfo = res.userInfo
-            }
-          })
-        }
-      })
+              this.userInfo = res.userInfo{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+            }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+          }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+        }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+      }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
     },
-    clickHandle (msg, ev) {
-      console.log('clickHandle:', msg, ev)
-    }
+    clickHandle{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}(msg, ev) {
+      console.log('clickHandle:', msg, ev){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
   },
 
-  created () {
+  created{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
     // 调用应用实例的方法获取全局数据
-    this.getUserInfo()
-  }
-}
+    this.getUserInfo(){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+}{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 </script>
 
 <style scoped>
@@ -93,6 +97,7 @@ export default {
   border: 1px solid #ccc;
 }
 
+{{#if vuex}}
 .counter {
   display: inline-block;
   margin: 10px auto;
@@ -100,4 +105,5 @@ export default {
   color: blue;
   border: 1px solid blue;
 }
+{{/if}}
 </style>

@@ -9,25 +9,25 @@
 </template>
 
 <script>
-import { formatTime } from '@/utils/index'
-import card from '@/components/card'
+import { formatTime } from '@/utils/index'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import card from '@/components/card'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 export default {
   components: {
-    card
+    card{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
   },
 
-  data () {
+  data{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
     return {
-      logs: []
-    }
+      logs: []{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+    }{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
   },
 
-  created () {
-    const logs = (wx.getStorageSync('logs') || [])
-    this.logs = logs.map(log => formatTime(new Date(log)))
-  }
-}
+  created{{#unless_eq lintConfig "airbnb"}} {{/unless_eq}}() {
+    const logs = (wx.getStorageSync('logs') || []){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    this.logs = logs.map(log => formatTime(new Date(log))){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+}{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 </script>
 
 <style>
