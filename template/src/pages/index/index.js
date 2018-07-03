@@ -10,7 +10,7 @@ export default {
       'navigationBarTitleText': '首页',
       'usingComponents': {
         'i-card': '/mpvue-iview/iview/card/index',
-        'i-steps':'/mpvue-iview/iview//steps/index',
+        'i-steps':'/mpvue-iview/iview/steps/index',
       }
     }
 
