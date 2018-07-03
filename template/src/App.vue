@@ -1,4 +1,7 @@
 <script>
+import 'mp-weui/lib/style.css'
+
+
 export default {
   mpType: 'app',
   created () {

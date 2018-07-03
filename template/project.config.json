@@ -10,7 +10,7 @@
 	"miniprogramRoot": "./dist/",
 	"compileType": "miniprogram",
 	"appid": "wx3011a047f254103f",
-	"projectname": "nf-name",
+	"projectname": "mpvue_iview",
 	"condition": {
 		"search": {
 			"current": -1,

@@ -1,16 +1,35 @@
 var path = require('path')
+var fs = require('fs')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 var MpvuePlugin = require('webpack-mpvue-asset-plugin')
-const MpvueEntry = require('mpvue-entry')
+var glob = require('glob')
+const ImportComponent = require('import-weapp-component')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
+function getEntry (rootSrc, pattern) {
+  var files = glob.sync(path.resolve(rootSrc, pattern))
+  return files.reduce((res, file) => {
+    var info = path.parse(file)
+    var key = info.dir.slice(rootSrc.length + 1) + '/' + info.name
+    res[key] = path.resolve(file)
+    return res
+  }, {})
+}
+
+const appEntry = { app: resolve('./src/main.js') }
+const pagesEntry = getEntry(resolve('./src'), 'pages/**/index.js')
+const entry = Object.assign({}, appEntry, pagesEntry)
+
 module.exports = {
-  entry: MpvueEntry.getEntry('./src/router/index.js'),
+  // 如果要自定义生成的 dist 目录里面的文件路径，
+  // 可以将 entry 写成 {'toPath': 'fromPath'} 的形式，
+  // toPath 为相对于 dist 的路径, 例：index/demo，则生成的文件地址为 dist/index/demo.js
+  entry,
   target: require('mpvue-webpack-target'),
   output: {
     path: config.build.assetsRoot,
@@ -26,19 +45,21 @@ module.exports = {
       '@': resolve('src'),
       'flyio': 'flyio/dist/npm/wx',
     },
-    symlinks: false
+    symlinks: false,
+    aliasFields: ['mpvue', 'weapp', 'browser'],
+    mainFields: ['browser', 'module', 'main']
   },
   module: {
     rules: [
-      {
+      /*{
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
-        include: [resolve('src')],
+        include: [resolve('src'), resolve('test')],
         options: {
           formatter: require('eslint-friendly-formatter')
         }
-      },
+      },*/
       {
         test: /\.vue$/,
         loader: 'mpvue-loader',
@@ -46,7 +67,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        include: [resolve('src')],
+        include: [resolve('src'), resolve('test')],
         use: [
           'babel-loader',
           {
@@ -54,7 +75,7 @@ module.exports = {
             options: {
               checkMPEntry: true
             }
-          }
+          },
         ]
       },
       {
@@ -84,7 +105,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new MpvueEntry(),
-    new MpvuePlugin()
+    new MpvuePlugin(),
+    new ImportComponent()
   ]
 }
