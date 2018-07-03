@@ -9,8 +9,8 @@
 	},
 	"miniprogramRoot": "./dist/",
 	"compileType": "miniprogram",
-	"appid": "wx3011a047f254103f",
-	"projectname": "mpvue_iview",
+	"appid": "{{ appid }}",
+	"projectname": "{{ name }}",
 	"condition": {
 		"search": {
 			"current": -1,

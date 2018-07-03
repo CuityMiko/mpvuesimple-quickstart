@@ -1,8 +1,8 @@
 {
-  "name": "name",
+  "name": "{{ name }}",
   "version": "1.0.0",
-  "description": "A Mpvue-simple project",
-  "author": "",
+  "description": "{{ description }}",
+  "author": "{{ author }}",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
