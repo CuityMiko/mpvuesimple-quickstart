@@ -46,8 +46,8 @@ export default {
 
 >示例的ask a question 使用了axios对api进行访问
 
-###注意
-若原生组件通过click事件，即this.triggerEvent('click', { index })来进行父子组件通信，mpvue无法从event.mp中读取到正确的detail，原因是因为mpvue将click事件编译为tap导致this.triggerEvent('click', { index })无法找到click句柄
+### 注意
+>若原生组件通过click事件，即this.triggerEvent('click', { index })来进行父子组件通信，mpvue无法从event.mp中读取到正确的detail，原因是因为mpvue将click事件编译为tap导致this.triggerEvent('click', { index })无法找到click句柄
 
 需要手动修改组件库中click事件名称，在这里修改iview文件加重modal/index.js文件：
 ``` 
