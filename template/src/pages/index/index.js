@@ -11,6 +11,8 @@ export default {
       'usingComponents': {
         'i-card': '/mpvue-iview/iview/card/index',
         'i-steps':'/mpvue-iview/iview/steps/index',
+        'i-step': '/iview/step/index',
+        'i-button': '/iview/button/index'
       }
     }
 
