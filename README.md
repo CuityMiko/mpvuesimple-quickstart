@@ -8,25 +8,32 @@
 $ npm install -g vue-cli
 $ vue init blackjack0v0/mpvuesimple-quickstart  mpvuesimple
 $ cd  mpvuesimple
-$ npm install
-$ npm run dev
+$ git clone https://github.com/JJJYY/mpvue-iview.git  
+$ cnpm install
+$ cnpm run dev
 ```
 
 ##  引入原生组件用法
-在你的项目如mpvuesimple里的pages组件中的index.js中引入
+>1.克隆一个小程序原生组件UI到主目录下如
+``` bash
+git clone https://github.com/JJJYY/mpvue-iview.git  
+```
+
+>2.在你的项目如mpvuesimple里的pages组件中的index.js中引入
 ``` js
 export default {
   config:
     {
       'navigationBarTitleText': '首页',
       'usingComponents': {
-        'i-card': '/iview/card/index'
+        'i-card': '/mpvue-iview/iview/card/index'
       }
     }
 
 }
 ``` 
-然后就可以直接在index.vue组件中引用了
+目录地址直接为根目录直接下来/mpvue-iview/iview/card/index
+>3.然后就可以直接在index.vue组件中引用了
 ``` html
 <div>
       <div style="margin: 16px">默认</div>

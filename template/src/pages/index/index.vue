@@ -140,9 +140,9 @@
       </div>
     </div>
     <div id="watch-example">
-      <p>Ask a yes/no question:</p>
+      <p>问我一个问题吧:</p>
       <input type="text" class="form-control" v-model="question">
-      <p>{{ answer }}</p>
+      <p>\{{ answer }}</p>
     </div>
     <form class="form-container">
       <input type="text" class="form-control" v-model="motto" placeholder="v-model" />

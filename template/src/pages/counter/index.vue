@@ -1,7 +1,7 @@
 <template>
   <div class="counter-warp">
     <mp-slider v-model="sliderValue" />
-    <p>Vuex counter：{{ count }}</p>
+    <p>Vuex counter：\{{ count }}</p>
     <p>
       <button @click="increment">+</button>
       <button @click="decrement">-</button>
@@ -11,26 +11,26 @@
       :options="options"
       :title="单选列表项"
     />
-    <p>恭喜你选中了：{{ radioValue }}</p>
+    <p>恭喜你选中了：\{{ radioValue }}</p>
     <mp-agree
       url-text="《相关条款》"
       v-model="isAgree"
       url="../index/index"
     />
-    <p>你同意吗？：{{ isAgree }}</p>
+    <p>你同意吗？：\{{ isAgree }}</p>
     <mp-checklist
       v-model="checkboxValue"
       :title="复选列表项"
       :options="options"
     />
-    <p>恭喜你选中了：{{ checkboxValue }}</p>
+    <p>恭喜你选中了：\{{ checkboxValue }}</p>
     <mp-actionsheet
       :actions="actions"
       v-model="value"
     >
       <button type="default">ActionSheet</button>
     </mp-actionsheet>
-    <p>你刚才做了这个动作：{{ value }}</p>
+    <p>你刚才做了这个动作：\{{ value }}</p>
     <mp-message
       confirm-text="推荐操作"
       cancel-text="辅助操作"
