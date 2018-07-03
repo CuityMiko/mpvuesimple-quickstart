@@ -12,7 +12,7 @@ $ npm install
 $ npm run dev
 ```
 
-##引入原生组件用法
+##  引入原生组件用法
 在你的项目如mpvuesimple里的pages组件中的index.js中引入
 ``` js
 export default {
@@ -59,7 +59,7 @@ this.triggerEvent('click', { index }) => this.triggerEvent('iclick', { index })
     <div>删除后无法恢复哦</div>
 </i-modal>
 ``` 
-####详见[mpvue-iview](https://github.com/JJJYY/mpvue-iview)
+####  详见[mpvue-iview](https://github.com/JJJYY/mpvue-iview)
 
 
 > 自动注册store    
@@ -71,5 +71,5 @@ this.triggerEvent('click', { index }) => this.triggerEvent('iclick', { index })
 优点：根据[vuex官方推荐](https://vuex.vuejs.org/zh-cn/intro.html)，将background API封装到actions中，具体用法可在代码里查看。
 
 
-####其他更多详细文档请查阅[mpvue-cli](https://github.com/spencer1994/mpvue-cli)。
+####  其他更多详细文档请查阅[mpvue-cli](https://github.com/spencer1994/mpvue-cli)。
 
