@@ -9,7 +9,8 @@ export default {
     {
       'navigationBarTitleText': '首页',
       'usingComponents': {
-        'i-card': 'iview-weapp/dist/card/index'
+        'i-card': 'iview-weapp/dist/card/index',
+        'i-steps':'iview-weapp/dist/steps/index',
       }
     }
 
