@@ -27,7 +27,7 @@ export default {
 }
 ``` 
 然后就可以直接在index.vue组件中引用了
-``` 
+``` html
 <div>
       <div style="margin: 16px">默认</div>
       <i-card title="卡片标题" extra="额外内容" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg">
@@ -50,11 +50,11 @@ export default {
 >若原生组件通过click事件，即this.triggerEvent('click', { index })来进行父子组件通信，mpvue无法从event.mp中读取到正确的detail，原因是因为mpvue将click事件编译为tap导致this.triggerEvent('click', { index })无法找到click句柄
 
 需要手动修改组件库中click事件名称，在这里修改iview文件加重modal/index.js文件：
-``` 
+``` js
 this.triggerEvent('click', { index }) => this.triggerEvent('iclick', { index })
 ``` 
 对应的模板中修改@click => @iclick：
-``` 
+``` js
 <i-modal title="删除确认" :visible="visible5" :actions="actions5" @iclick="handleClick5">
     <div>删除后无法恢复哦</div>
 </i-modal>
