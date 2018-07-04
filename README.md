@@ -71,6 +71,8 @@ this.triggerEvent('click', { index }) => this.triggerEvent('iclick', { index })
 
 ![示例图片2](http://wx1.sinaimg.cn/mw690/0060lm7Tly1fsye68kj3pg309i0grjwq.gif)
 
+具体示例代码见https://github.com/blackjack0v0/mpvue-iview-wux-weapp-demo
+
 > 下载wux-weapp组件
 ``` bash
 $ git clone https://github.com/JJJYY/mpvue-iview.git  
