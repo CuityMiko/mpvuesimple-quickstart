@@ -75,7 +75,7 @@ this.triggerEvent('click', { index }) => this.triggerEvent('iclick', { index })
 
 > 下载wux-weapp组件
 ``` bash
-$ git clone https://github.com/JJJYY/mpvue-iview.git  
+$ git clone https://github.com/wux-weapp/wux-weapp.git
 ```
 
 
