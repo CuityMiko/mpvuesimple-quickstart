@@ -155,6 +155,8 @@
 <script>
 import card from '@/components/card'
 import _ from 'lodash'
+
+
 export default {
   data () {
     return {
