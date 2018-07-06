@@ -71,6 +71,7 @@ this.triggerEvent('click', { index }) => this.triggerEvent('iclick', { index })
  }
 ```
 > 2.在index.vue中使用
+
 ``` javascript
  <div><wux-floating-button v-bind:buttons="buttons" @iclick="handleClick6">
  </wux-floating-button>
