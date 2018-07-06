@@ -181,7 +181,7 @@ _这里修改了this.triggerEvent中的click为iclick_
 
 >*这些组件都需要通过先通过调用 getCurrentPages()获取页面示例，
 然后使用selector选择器来选择组件节点，所以需要设置一个id，最终通过$wuxGallery(id)函数来获取节点的实例*
-```
+
 ```javascript
 <script>
 import { formatTime } from '@/utils/index'
@@ -189,7 +189,7 @@ import card from '@/components/card'
 import { $wuxGallery } from '@/utils/wux'
 export default {....}
 </script>
-
+```
 
 ```html
   <wux-gallery id="wux-gallery"></wux-gallery>
