@@ -2,46 +2,35 @@
 
 > 结合了[@spencer1994](https://github.com/spencer1994)的[mpvuecli](https://github.com/spencer1994/mpvue-cli) 
    与[@JJJYY](https://github.com/JJJYY/)的[mpvue-iview](https://github.com/JJJYY/mpvue-iview) 两个项目
-
+   
+   *感谢[@spencer1994](https://github.com/spencer1994)告诉我mpvue本来就自带原生组件的引入功能！！现在把mpvue-entry重新加了回来。*
+   
 ## 基本用法
 ``` bash
 $ npm install -g vue-cli
 $ vue init blackjack0v0/mpvuesimple-quickstart  mpvuesimple
 $ cd  mpvuesimple
-$ git clone https://github.com/JJJYY/mpvue-iview.git  
 $ cnpm install
+$ git clone https://github.com/blackjack0v0/static  ##自己去官网下载组件也OK
 $ cnpm run dev
 ```
 
+
 ##  引入原生组件用法
->1.克隆一个小程序原生组件UI到主目录下如
-``` bash
-git clone https://github.com/JJJYY/mpvue-iview.git  
-```
+> 1.下载组件到根目录下static文件夹中
 
->2.在你的项目如mpvuesimple里的pages组件中的index.js中引入
+
+> 2.在src/router文件夹中的index.js为每个页面设置引入的组件 
 ``` js
-export default {
-  config:
-    {
-      'navigationBarTitleText': '首页',
-      'usingComponents': {
-        'i-card': '/mpvue-iview/iview/card/index'
-      }
-    }
-
-}
+    config: {
+      navigationBarTitleText: '首页',
+      usingComponents: {
+        'i-card': '../../static/iview/card/index'
+        }
 ``` 
-目录地址直接为根目录直接下来/mpvue-iview/iview/card/index
->3.然后就可以直接在index.vue组件中引用了
+>3.然后就可以直接在每个页面的index.vue组件中引用了
 ``` html
-<div>
-      <div style="margin: 16px">默认</div>
-      <i-card title="卡片标题" extra="额外内容" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg">
-        <div slot="content">内容不错</div>
-        <div slot="footer">尾部内容</div>
-      </i-card>
-      <div style="margin: 16px">通栏</div>
+    <div>
       <i-card full title="卡片标题" extra="额外内容" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg">
         <div slot="content">内容不错</div>
         <div slot="footer">尾部内容</div>
@@ -56,7 +45,7 @@ export default {
 ### 注意
 >若原生组件通过click事件，即this.triggerEvent('click', { index })来进行父子组件通信，mpvue无法从event.mp中读取到正确的detail，原因是因为mpvue将click事件编译为tap导致this.triggerEvent('click', { index })无法找到click句柄
 
-需要手动修改组件库中click事件名称，在这里修改iview文件加重modal/index.js文件：
+需要手动修改组件库中click事件名称，在这里修改iview文件中的modal/index.js文件：
 ``` js
 this.triggerEvent('click', { index }) => this.triggerEvent('iclick', { index })
 ``` 
@@ -67,19 +56,15 @@ this.triggerEvent('click', { index }) => this.triggerEvent('iclick', { index })
 </i-modal>
 ``` 
 
-####  在项目中 wux-weapp UI
+###  在项目中 wux-weapp UI
 
 ![示例图片2](http://wx1.sinaimg.cn/mw690/0060lm7Tly1fsye68kj3pg309i0grjwq.gif)
 
 具体示例代码见https://github.com/blackjack0v0/mpvue-iview-wux-weapp-demo
 
-> 下载wux-weapp组件
-``` bash
-$ git clone https://github.com/wux-weapp/wux-weapp.git
-```
+步骤与前面相同，先下载组件到static文件夹
 
-
-> 1.在index.js中使用
+> 1.在src/router文件夹中的index.js需要用到的页面处引入
 ``` javascript
 'usingComponents': {
 'wux-floating-button': '/wux-weapp/dist/floating-button/index'
@@ -91,17 +76,28 @@ $ git clone https://github.com/wux-weapp/wux-weapp.git
  </wux-floating-button>
  </div>
 ```
-#### 注意
-**由于wux-weapp中使用了helper，我们需要手动把wux-weapp/dist/helpers文件夹拷贝到根目录下生成的dist文件夹中**
 
+> 3.在方法中添加setdata的方法
 
->> 2.1 组件具体参数的配置
+``` javascript
+ methods: {
+    setData (data) {
+      Object.keys(data).forEach(key => {
+        this[key] = data[key]
+      })
+    }
+   } 
+```
+
+到这里你就成功引入一个原生的小程序组件了！！！
+
+> #### 组件具体参数的配置
 
 查看wux的文档[api](https://wux-weapp.github.io/wux-weapp/#/floating-button)发现
 悬浮按钮一共有几个参数，如position属性、click事件
 
-- string、number属性直接用position="topLeft"这种形式传递
-- array数组类的可以使用 v-bind:buttons="buttonsarray"，这里buttons属性接受一个
+- **string、number属性**---直接用position="topLeft"这种形式传递
+- **array数组类的或者需要接受一个变量的**---可以使用 v-bind:buttons="buttonsarray"，这里buttons属性接受一个
 buttonsarray数组，然后我们使用v-bind来把buttonsarray传递给buttons这个属性。
 ``` javascript
  data () {
@@ -124,7 +120,7 @@ buttonsarray数组，然后我们使用v-bind来把buttonsarray传递给buttons�
    }
 ```
 
-- 事件使用@iclick="handleClick6"形式
+- **事件类型的**---使用@iclick="handleClick6"形式
 
 ```
 <wux-floating-button position="topLeft" v-bind:buttons="buttons" @iclick="handleClick6">
@@ -143,6 +139,16 @@ buttonsarray数组，然后我们使用v-bind来把buttonsarray传递给buttons�
 
 查看float-button组件的源码中看到它已经把单个按钮的dataset赋值到value上了，所以我们通过
 **event.target.value**来取得展开后每个按钮对应的数据，从而进行特定的处理
+
+```  javascript
+    handleClick6 (event) {
+      const url = event.target.value.url
+      console.log(event.target.value.url)
+      wx.navigateTo({ url })
+    },
+```
+
+> 下面为float-button原生组件的代码
 
 index.wxml中
 ``` html
@@ -165,11 +171,115 @@ index.js中
 _这里修改了this.triggerEvent中的click为iclick_
 
 
+###  wux-weapp UI 复杂组件如gallery，toast组件的引入
+![示例图片3](http://wx1.sinaimg.cn/mw690/0060lm7Tly1ft0kce6f4jg309h0h87wj.gif)
+1. 把wux-weapp根目录下的index.js拷贝到src/utils文件夹中,并改名为wux.js（改名随意） 
+
+2. 在页面router/index.js中引入组件
+
+3. 在index.vue导入wux.js以便使用已经写好的$wuxGallery函数，并使用组件
+
+>*这些组件都需要通过先通过调用 getCurrentPages()获取页面示例，
+然后使用selector选择器来选择组件节点，所以需要设置一个id，最终通过$wuxGallery(id)函数来获取节点的实例*
+```
+```javascript
+<script>
+import { formatTime } from '@/utils/index'
+import card from '@/components/card'
+import { $wuxGallery } from '@/utils/wux'
+export default {....}
+</script>
 
 
-####  其他更多详细文档请查阅[mpvue-iview](https://github.com/JJJYY/mpvue-iview)
+```html
+  <wux-gallery id="wux-gallery"></wux-gallery>
+    <div v-for=" (url,index) in urls " >
+       <img  :src="url"  @click="showGallery(index)" />
+    </div>
+```
+
+3.1配置好要显示的图片urls
+```javascript
+ data(){
+    return {
+        urls: [
+        'https://unsplash.it/200/200',
+        'https://unsplash.it/300/300',
+        'https://unsplash.it/400/400',
+        'https://unsplash.it/600/600',
+        'https://unsplash.it/800/800',
+        'https://unsplash.it/900/900',
+        'https://unsplash.it/1000/1000',
+        'https://unsplash.it/1200/1200',
+       ]
+      }
+     }
+```
+3.2在方法中添加setdata的方法
+   
+   ``` javascript
+    methods: {
+       setData (data) {
+         Object.keys(data).forEach(key => {
+           this[key] = data[key]
+         })
+       }
+      } 
+   ```
+
+4.写showGallery(url,index)函数
+> 注意：不用自己写，对着wux-weapp的文档示例修改即可，我们具体内部函数this.$wuxGallery.show
+不用修改，只要修改传入的参数，这里this.$wuxGallery.show需要urls列表及当前显示的目标current这两个值。
+```javascript
+    <div v-for=" (url,index) in urls " >
+       <img  :src="url"  @click="showGallery(index)" />
+```
+```javascript
+    showGallery(current) {
+      const urls=this.urls
+      this.$wuxGallery = $wuxGallery()
+      this.$wuxGallery.show({
+        current,
+        urls,
+        [`delete`]: (current, urls) => {
+          urls.splice(current, 1)
+          this.setData({
+            urls,
+          })
+          return true
+        },
+        cancel() {
+          console.log('Close gallery')
+        },
+        onTap(current, urls) {
+          console.log(current, urls)
+          return true
+        },
+        onChange(e) {
+          console.log(e)
+        }
+      })
+    }
+```
+下面是官网文档示例的函数
+```javascript
+    showGallery(e) {
+       /* const { current } = e.currentTarget.dataset
+        const { urls } = this.data     */ 这里被修改的部分
+
+        this.$wuxGallery = $wuxGallery()     
+
+        this.$wuxGallery.show({
+         ...内容同前
+        })
+    }
+```
+*用vue写处理函数传值一对比明显更加简便了....*
 
 
+#####  其他更多详细文档请查阅[mpvue-iview](https://github.com/JJJYY/mpvue-iview)
+
+###  其他加强功能的说明
 > 自动注册store    
 
 优点：多人协作开发不需要担心代码冲突，不需要每个store.js都要import引入。
