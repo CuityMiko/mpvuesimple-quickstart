@@ -1,9 +1,11 @@
-# mpvuesimple-quickstart
+# mpvuesimple-quickstart  
 
 > 结合了[@spencer1994](https://github.com/spencer1994)的[mpvuecli](https://github.com/spencer1994/mpvue-cli) 
    与[@JJJYY](https://github.com/JJJYY/)的[mpvue-iview](https://github.com/JJJYY/mpvue-iview) 两个项目
    
    *感谢[@spencer1994](https://github.com/spencer1994)告诉我mpvue本来就自带原生组件的引入功能！！现在把mpvue-entry重新加了回来。*
+   
+   [在这里查看文档！](https://blackjack0v0.github.io/mpvuesimple-quickstart) 
    
 ## 基本用法
 ``` bash
