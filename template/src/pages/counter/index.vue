@@ -31,13 +31,6 @@
       <button type="default">ActionSheet</button>
     </mp-actionsheet>
     <p>你刚才做了这个动作：\{{ value }}</p>
-    <mp-message
-      confirm-text="推荐操作"
-      cancel-text="辅助操作"
-      content="内容详情"
-      title="操作成功"
-      show-cancel
-    />
     <a href="/pages/index/index" class="home">去往首页</a>
   </div>
 </template>

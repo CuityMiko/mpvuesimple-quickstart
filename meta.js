@@ -71,5 +71,5 @@ module.exports = {
         "src/pages/counter.vue": "vuex",
         "src/store/*": "vuex"
     },
-    "completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}cnpm install\n  git clone https://github.com/JJJYY/mpvue-iview.git  \n  cnpm run dev\n\nDocumentation can be found at http://mpvue.com"
+    "completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}cnpm install  \n  cnpm run dev\n\nDocumentation can be found at http://mpvue.com"
 };

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/mpvuesimple-quickstart.iml" filepath="$PROJECT_DIR$/.idea/mpvuesimple-quickstart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/mpvue-entry-ui-quickstart.iml" filepath="$PROJECT_DIR$/.idea/mpvue-entry-ui-quickstart.iml" />
     </modules>
   </component>
 </project>
