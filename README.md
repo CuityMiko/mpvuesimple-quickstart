@@ -295,3 +295,8 @@ export default {....}
 
 ####  其他更多详细文档请查阅[mpvue-cli](https://github.com/spencer1994/mpvue-cli)。
 
+## 踩坑注意
+ 如果你初始化一个项目后又想改项目的名字，这个时候你运行cnpm run dev 的时候会发现
+ 
+ ` Error: Cannot find module '***'`，这个时候你需要删除node_module文件夹，
+ 然后再运行cnpm install！！
