@@ -13,13 +13,14 @@ $ npm install -g vue-cli
 $ vue init blackjack0v0/mpvuesimple-quickstart  mpvuesimple
 $ cd  mpvuesimple
 $ cnpm install
-$ git clone https://github.com/blackjack0v0/static  ##自己去官网下载组件也OK
+$ git clone https://github.com/blackjack0v0/static 
 $ cnpm run dev
 ```
 
 
 ##  引入原生组件用法
-> 1.下载组件到根目录下static文件夹中
+> 1.下载组件到根目录下static文件夹中，注意：本示例引入了一个wux.js文件在utils文件夹中，
+如果你不用wux-weapp的话请手动删除，以免编译报错！！！
 
 
 > 2.在src/router文件夹中的index.js为每个页面设置引入的组件 
